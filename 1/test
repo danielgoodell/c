@@ -1,0 +1,9 @@
+1
+22
+333
+~~~~~~~
+!!!!!
+
+Clang is intended specifically to work on top of LLVM.[10] The combination of Clang and LLVM provides the majority of a toolchain, allowing the replacement of the whole GCC stack. Because it is built with a library-based design, like the rest of LLVM, Clang is easy to embed into other applications. This is one reason why a majority of the OpenCL implementations are built with Clang and LLVM.[citation needed]
+
+One of Clang's primary goals is to better support incremental compilation to allow the compiler to be more tightly tied to the IDE GUI. GCC is designed to work in a "classic" compile-link-debug cycle, and although it provides useful ways to support incremental and interrupted compiling on-the-fly, integrating them with other tools is not always easy. For instance, GCC uses 

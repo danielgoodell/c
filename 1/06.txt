@@ -1,0 +1,12 @@
+I don't think this should be done with a program.
+
+getchar can either give is an EOF or something other than EOF.
+
+so we either have:
+
+("EOF" != EOF) = 0
+
+or 
+
+("something other than EOF") != EOF = 1
+
