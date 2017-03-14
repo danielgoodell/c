@@ -1,9 +1,11 @@
+
+//1.	this line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 chars
+
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line size*/
 
 int getline(char line[], int maxline);
 void copy(char t[], char from[]);
-void cleanline(char line[], int len);
 
 /* print the longest input line */
 int main(void)
@@ -12,8 +14,10 @@ int main(void)
 	char line[MAXLINE];
 
 	while ((len = getline(line, MAXLINE)) > 0)
-		cleanline(line, len);
-		printf("%s", line);
+		if (len > 79) {
+			printf("%s\n", line);
+		}		
+	
 	return 0;
 }
 
@@ -42,21 +46,6 @@ int getline(char s[], int lim)
 	}
 	return i;
 }
-/*cleanline: removes trailing spaces/tabs for each line and deletes any completely blank lines*/
-void cleanline(char line[], int len)
-{
-	for (1, (line[len] == '\t' && line[len] ==' ' && line[len] == '\n') || len == 0, len--)
-	if(len == 0)
-		line[0] = '\0';
-	len++;
-	line[len] = '\n';
-	len++;
-	line[len] = '\0';
-	return len;
-}
-		
-
-
 
 /* copy: copy 'from' into 'to'; assume to is big enough */
 void copy(char to[], char from[])
@@ -65,7 +54,7 @@ void copy(char to[], char from[])
 
 	i = 0;	
 	while((to[i] = from[i]) != '\0')
-		++i;                  				
+		++i;
 }
 //2.	this line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 charsthis line has to be longer than 80 chars
 
