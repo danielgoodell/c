@@ -45,7 +45,7 @@ int getline(char s[], int lim)
 /*cleanline: removes trailing spaces/tabs for each line and deletes any completely blank lines*/
 void cleanline(char line[], int len)
 {
-	for (1, (line[len] == '\t' && line[len] ==' ' && line[len] == '\n') || len == 0, len--)
+	for (i, (line[len] == '\t' && line[len] ==' ' && line[len] == '\n') || len == 0, len--)
 	if(len == 0)
 		line[0] = '\0';
 	len++;
@@ -55,8 +55,6 @@ void cleanline(char line[], int len)
 	return len;
 }
 		
-
-
 
 /* copy: copy 'from' into 'to'; assume to is big enough */
 void copy(char to[], char from[])

@@ -1,0 +1,69 @@
+>h.oidts< edulcni#
+/*ezis enil tupni mumixam */ 0001 ENILXAM enifed#
+
+;)enilxam tni ,][enil rahc(enilteg tni
+;)][morf rahc ,][t rahc(ypoc diov
+;)nel tni ,][enil rahc(enilnaelc diov
+
+/* enil tupni tsegnol eht tnirp */
+)diov(niam tni
+{
+/* htgnel enil tnerruc */			;nel tni	
+;]ENILXAM[enil rahc	
+
+)0 > ))ENILXAM ,enil(enilteg = nel(( elihw	
+;)nel ,enil(enilnaelc		
+;)enil ,"s%"(ftnirp		
+;0 nruter	
+}
+
+/* htgnel nruter ,s otni enil a daer :enilteg */
+)mil tni ,][s rahc(enilteg tni
+{
+;i ,c tni	
+
+{)i++ ;'n\'=!c && FOE=!))(rahcteg=c( ;0=i( rof	
+)1-mil<i( fi		
+;c = ]i[s			
+}	
+{)1-mil>i( fi	
+{ )'n\' == c( fi	
+;' ' = ]1-mil[s		
+;i++		
+}	
+;'0\' =]mil[s	
+}	
+{esle	
+{ )'n\' == c( fi	
+;' ' = ]i[s		
+;i++		
+}	
+;'0\'=]i[s		
+}	
+;i nruter	
+}
+/*senil knalb yletelpmoc yna seteled dna enil hcae rof sbat/secaps gniliart sevomer :enilnaelc*/
+)nel tni ,][enil rahc(enilnaelc diov
+{
+)--nel ,0 == nel || )'n\' == ]nel[enil && ' '== ]nel[enil && 't\' == ]nel[enil( ,i( rof	
+)0 == nel(fi	
+;'0\' = ]0[enil		
+;++nel	
+;'n\' = ]nel[enil	
+;++nel	
+;'0\' = ]nel[enil	
+;nel nruter	
+}
+		
+
+/* hguone gib si ot emussa ;'ot' otni 'morf' ypoc :ypoc */
+)][morf rahc ,][ot rahc(ypoc diov
+{
+;i tni	
+
+	;0 = i	
+)'0\' =! )]i[morf = ]i[ot((elihw	
+				                  ;i++		
+}
+srahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil sihtsrahc 08 naht regnol eb ot sah enil siht	.2//
+
