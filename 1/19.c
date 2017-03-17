@@ -44,6 +44,7 @@ int getline(char s[], int lim)
 	}
 	return i;
 }
+
 /*reverseline: reverse a string of length len*/
 void reverseline(char line[], int len)
 {
