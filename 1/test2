@@ -1,20 +1,124 @@
+LASTSPACE = 78
+LEN = 17
 #include <stdio.h>
+LASTSPACE = 78
+LEN = 66
+HELLO WORLD HELLO WORLDHELLO WORLDHELLO WORLDHELLO WORLDHELLO WORLD
+LASTSPACE = 78
+LEN = -1
 
-int main()
-{
-    char c;
-    int i=0;
-    int tabspace=4;
+LASTSPACE = 78
+LEN = 9
+int	main()
+LASTSPACE = 78
+LEN = -1
 
-    for(;(c=getchar()) != EOF; i++){
-        if (c == '\n'){
-            putchar('\n');
-            i=0;}
-        else if (c == '\t')
-            for(;printf(" "), i < tabspace; i++);
-        else putchar(c);
-        if (i == tabspace)
-            i=0;
-    }
-}
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 76
+LEN = 78
+Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
+LASTSPACE = 78
+LEN = 40
+Long	tab	line	Long	tab	line	v
+LASTSPACE = 78
+LEN = -1
 
+LASTSPACE = 78
+LEN = 78
+longlinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllon
+LASTSPACE = 78
+LEN = 78
+glinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongli
+LASTSPACE = 78
+LEN = 78
+newithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinew
+LASTSPACE = 78
+LEN = 78
+ithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewith
+LASTSPACE = 78
+LEN = 78
+nospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnos
+LASTSPACE = 78
+LEN = 78
+pacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospac
+LASTSPACE = 78
+LEN = 78
+esatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesa
+LASTSPACE = 78
+LEN = 78
+talllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatal
+LASTSPACE = 78
+LEN = 78
+llonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllo
+LASTSPACE = 78
+LEN = 78
+nglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongl
+LASTSPACE = 20
+LEN = 78
+inewithnospacesatall 
+Return Value = 57
+LASTSPACE = 78
+LEN = 78
+longlinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllon
+LASTSPACE = 78
+LEN = 78
+glinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongli
+LASTSPACE = 78
+LEN = 43
+newithnospacesatalllonglinewithnospacesatall
+LASTSPACE = 78
+LEN = -1
+
+LASTSPACE = 70
+LEN = 78
+Long line	that uses	tabs for some	of the spacing	and it doesn't	
+Return Value = 7
+LASTSPACE = 78
+LEN = 63
+lworkout	that well 	after all but we'll see 	what happens
+LASTSPACE = 78
+LEN = -1
+
+LASTSPACE = 74
+LEN = 78
+long line long line long line long line long line long line long line long 
+Return Value = 3
+LASTSPACE = 75
+LEN = 78
+lineislong line long line long line long line long line long line long line 
+Return Value = 2
+LASTSPACE = 78
+LEN = 8
+long line
