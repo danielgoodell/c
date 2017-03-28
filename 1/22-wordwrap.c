@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define COLUMNWIDTH 78
+#define COLUMNWIDTH 80
 #define TABSTOP 4
 
 int printline(char linebuffer[], int lastspace, int len);
@@ -48,11 +48,9 @@ int main (void){
 
 int printline(char linebuffer[], int lastspace, int len){
 
-	printf("LASTSPACE = %d\n", lastspace);
-	printf("LEN = %d\n", len);
-
 	int i = 0;
 	int end = 0;
+	int firstchar=0;
 
 	if (len < COLUMNWIDTH-1)
 		end = len;
@@ -71,21 +69,20 @@ int printline(char linebuffer[], int lastspace, int len){
 	putchar('\n');
 
 	if (linebuffer[lastspace] == ' ' || (linebuffer[lastspace]=='\t' && TABSTOP+((lastspace/TABSTOP)*TABSTOP)<COLUMNWIDTH)){
-		i=lastspace;
-		while(i < COLUMNWIDTH-1){
-			if (linebuffer[i+1]!='\t'){
-				linebuffer[i-lastspace] = linebuffer[i+1];
+		if (linebuffer[lastspace] == '\t')
+			firstchar = lastspace + TABSTOP - (lastspace-(lastspace/TABSTOP)*TABSTOP);
+		else
+			firstchar = lastspace+1;
+		i = firstchar;
+		while(i < COLUMNWIDTH){
+			if (linebuffer[i]!='\t'){
+				linebuffer[i-firstchar] = linebuffer[i];
 				i++;}
-			else
-				i = i + TABSTOP - (i-(i/TABSTOP)*TABSTOP);
+			else{
+				linebuffer[i-firstchar] = linebuffer[i];
+				i = i + TABSTOP - (i-(i/TABSTOP)*TABSTOP);}
 		}
-		printf("Return Value = %d\n", COLUMNWIDTH-lastspace-1);
-		return (i-lastspace);
+		return (i-firstchar);
 	} else
 		return 0;
 }
-
-
-
-
-
