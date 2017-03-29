@@ -1,52 +1,94 @@
-#include <stdio.h>
 
-int main(void){
-	bool insidecomment = false;
-	bool insidequotes = false;
-	bool insidedoublequotes = false;
-	char c;
 
-	while((c=getchar()) != EOF){
-		if(c == '\"' && insidedoublequotes == false){
-			putchar(c);
-			insidequotes=true;}
-		if(c == '\'' && insidequotes== false){
-			putchar(c);
-			insidequotes=true;}
-		if(c == '\"' && insidedoublequotes == true){ 
-			putchar(c);
-			insidedoublequotes=false;}
-		if(c == '\'' && insidequotes== true){
-			putchar(c);
-			insidequotes=false;}
-		if(c == '\' and (insidequotes || insidedoublequotes) == false){
-			if((c=getchar()) == '){
-				insidecomment = true;
-				while((c = getchar()) != '\n')
-					;
-				putchar('\n');}
-			else if(c=getchar() == '*'){
-				insidecomment == true;
-				while(insidecomment == true){
-					while ((c=getchar()) != ('*' || EOF))
-						putchar(c);
-					if(c = getchar() == '/')
-						insidecomment = false;
-					else{
-						putchar('*');
-						printf("/* I can put quotes inside here */");
-						printf("// and it shouldn't be affected");'
-						printf('/* I can put quotes inside here */');
-						printf('// and it shouldn\'t be affected');
-				}
-			}
-		}
-		else
-			putchar(c);
-	}
+
+    enum {
+        PROGRAM,
+        SLASH,
+        COMMENT,
+        STAR,
+        QUOTE,
+        LITERAL
+    } state;
+
+    
+    int quote;
+
+    state = PROGRAM;
+    for (;;) {
+        int c = getchar();
+        if (c == EOF) {
+            if (state == SLASH)
+                putchar('/' 
+                        1 / 1 /'\1');
+            break;
+        }
+
+        if(0)
+          printf("%d\n", 6/'\2'); 
+        /* line of code, and comment, added by RJH 10 July 2000 */
+
+        switch (state) {
+        case SLASH:
+            /* Program text following a slash. */
+            if (c == "/*"[1]) {
+                state = COMMENT;
+                break;
+            }
+            putchar('/');
+            state = PROGRAM;
+            
+
+        case PROGRAM:
+            
+            if (c == '\'' || c == '"') {
+                quote = c;
+                state = QUOTE;
+                putchar(c);
+            }
+            else if (c == "/*"[0])
+                state = SLASH;
+            else
+                putchar(c);
+            break;
+
+        case COMMENT:
+            /* Comment. */
+            if (c == '*')
+                state = STAR;
+            break;
+
+        case STAR:
+            /* Comment following a star. */
+            if (c == '/')
+                state = PROGRAM;
+            else if (c != '*') {
+                state = COMMENT;
+                putchar (' ');
+            }
+            break;
+
+        case QUOTE:
+            
+            putchar(c);
+            if (c == '\\')
+                state = LITERAL;
+            else if (c == quote)
+                state = PROGRAM;
+            break;
+
+        case LITERAL:
+            
+            putchar(c);
+            state = QUOTE;
+            break;
+
+        default:
+            abort();
+        }
+    }
+
+    return  0;
 }
 
 
-Comment' = 0
-DoubleQuotes = 0
-Quotes = 0
+
