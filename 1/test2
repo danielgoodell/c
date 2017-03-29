@@ -1,124 +1,52 @@
-LASTSPACE = 78
-LEN = 17
 #include <stdio.h>
-LASTSPACE = 78
-LEN = 66
-HELLO WORLD HELLO WORLDHELLO WORLDHELLO WORLDHELLO WORLDHELLO WORLD
-LASTSPACE = 78
-LEN = -1
 
-LASTSPACE = 78
-LEN = 9
-int	main()
-LASTSPACE = 78
-LEN = -1
+int main(void){
+	bool insidecomment = false;
+	bool insidequotes = false;
+	bool insidedoublequotes = false;
+	char c;
 
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 76
-LEN = 78
-Long	tab	line	Long	tab	line	Long	tab	line	Long	tab	line	
-LASTSPACE = 78
-LEN = 40
-Long	tab	line	Long	tab	line	v
-LASTSPACE = 78
-LEN = -1
+	while((c=getchar()) != EOF){
+		if(c == '\"' && insidedoublequotes == false){
+			putchar(c);
+			insidequotes=true;}
+		if(c == '\'' && insidequotes== false){
+			putchar(c);
+			insidequotes=true;}
+		if(c == '\"' && insidedoublequotes == true){ 
+			putchar(c);
+			insidedoublequotes=false;}
+		if(c == '\'' && insidequotes== true){
+			putchar(c);
+			insidequotes=false;}
+		if(c == '\' and (insidequotes || insidedoublequotes) == false){
+			if((c=getchar()) == '){
+				insidecomment = true;
+				while((c = getchar()) != '\n')
+					;
+				putchar('\n');}
+			else if(c=getchar() == '*'){
+				insidecomment == true;
+				while(insidecomment == true){
+					while ((c=getchar()) != ('*' || EOF))
+						putchar(c);
+					if(c = getchar() == '/')
+						insidecomment = false;
+					else{
+						putchar('*');
+						printf("/* I can put quotes inside here */");
+						printf("// and it shouldn't be affected");'
+						printf('/* I can put quotes inside here */');
+						printf('// and it shouldn\'t be affected');
+				}
+			}
+		}
+		else
+			putchar(c);
+	}
+}
 
-LASTSPACE = 78
-LEN = 78
-longlinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllon
-LASTSPACE = 78
-LEN = 78
-glinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongli
-LASTSPACE = 78
-LEN = 78
-newithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinew
-LASTSPACE = 78
-LEN = 78
-ithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewith
-LASTSPACE = 78
-LEN = 78
-nospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnos
-LASTSPACE = 78
-LEN = 78
-pacesatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospac
-LASTSPACE = 78
-LEN = 78
-esatalllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesa
-LASTSPACE = 78
-LEN = 78
-talllonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatal
-LASTSPACE = 78
-LEN = 78
-llonglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllo
-LASTSPACE = 78
-LEN = 78
-nglinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongl
-LASTSPACE = 20
-LEN = 78
-inewithnospacesatall 
-Return Value = 57
-LASTSPACE = 78
-LEN = 78
-longlinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllon
-LASTSPACE = 78
-LEN = 78
-glinewithnospacesatalllonglinewithnospacesatalllonglinewithnospacesatalllongli
-LASTSPACE = 78
-LEN = 43
-newithnospacesatalllonglinewithnospacesatall
-LASTSPACE = 78
-LEN = -1
 
-LASTSPACE = 70
-LEN = 78
-Long line	that uses	tabs for some	of the spacing	and it doesn't	
-Return Value = 7
-LASTSPACE = 78
-LEN = 63
-lworkout	that well 	after all but we'll see 	what happens
-LASTSPACE = 78
-LEN = -1
-
-LASTSPACE = 74
-LEN = 78
-long line long line long line long line long line long line long line long 
-Return Value = 3
-LASTSPACE = 75
-LEN = 78
-lineislong line long line long line long line long line long line long line 
-Return Value = 2
-LASTSPACE = 78
-LEN = 8
-long line
+Comment' = 0
+DoubleQuotes = 0
+Quotes = 0
