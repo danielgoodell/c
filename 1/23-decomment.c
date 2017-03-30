@@ -37,10 +37,13 @@ int main(void){
 			else if(c == '*'){
 				insidecomment = 1;
 				while(insidecomment == 1){
-					while ((c=getchar()) != '*');
-					if((c=getchar()) == '/')
-						insidecomment = 0;}}
-					else if (c == '*')
+					if (c!='*')
+						c=getchar();
+					if (c=='*')
+						if ((c=getchar())=='/')
+							insidecomment = 0;
+										} }
+						
 						
 			else {
 				putchar('/');
