@@ -4,8 +4,7 @@
 
 #include <stdio.h>
 
-int
-main(void)
+int main(void)
 {
     
     enum {
@@ -25,18 +24,18 @@ main(void)
         int c = getchar();
         if (c == EOF) {
             if (state == SLASH)
-                putchar('/' 
-                        1 / 1 /'\1');
-            break;
-        }
-
-        if(0)
-          printf("%d\n", 6/'\2'); 
-        /* line of code, and comment, added by RJH 10 July 2000 */
+                putchar(' /   ' 
+                        1 / 1 /'\1');/
+            break; /
+        } /
+/
+        if(0)/
+        /  printf("%d\n", 6/'\2'); 
+        
 
         switch (state) {
         case SLASH:
-            /* Program text following a slash. */
+            
             if (c == "/*"[1]) {
                 state = COMMENT;
                 break;
@@ -52,20 +51,13 @@ main(void)
                 state = QUOTE;
                 putchar(c);
             }
-            else if (c == "/*"[0])
-                state = SLASH;
-            else
-                putchar(c);
-            break;
-
-        case COMMENT:
-            /* Comment. */
+            else if (c == "
             if (c == '*')
                 state = STAR;
             break;
 
         case STAR:
-            /* Comment following a star. */
+            
             if (c == '/')
                 state = PROGRAM;
             else if (c != '*') {

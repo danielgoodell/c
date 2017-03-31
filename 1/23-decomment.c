@@ -4,36 +4,42 @@ int main(void){
 	int insidecomment = 0;
 	int insidequotes = 0;
 	int insidedoublequotes = 0;
-	char c;
+	char c = getchar();
 	
-	while((c=getchar()) != EOF){
-		if((c == '\\') && (insidedoublequotes == 1)){
+	while(c != EOF){
+		if((c == '\"') && (insidedoublequotes == 0) && (insidequotes == 0)){
 			putchar(c);
-			c = getchar();
-			putchar(c);}
-		else if((c == '\\') && (insidequotes == 1)){
-			putchar(c);
-			c = getchar();
-			putchar(c);}
-		else if((c == '\"') && (insidedoublequotes == 0) && (insidequotes == 0)){
-			putchar(c);
-			insidequotes=1;}
+			insidedoublequotes=1;
+			c=getchar();
+		}
 		else if((c == '\'') && (insidequotes == 0) && (insidedoublequotes == 0)){
 			putchar(c);
-			insidequotes=1;}
+			insidequotes=1;
+			c=getchar();
+		}
 		else if((c == '\"') && (insidedoublequotes == 1)){
 			putchar(c);
-			insidedoublequotes=0;}
+			insidedoublequotes=0;
+			c=getchar();
+		}
 		else if((c == '\'') && insidequotes== 1){
 			putchar(c);
-			insidequotes=0;}
+			insidequotes=0;
+			c=getchar();
+		}
+		else if((insidequotes == 1 || insidedoublequotes == 1)){
+			putchar(c);
+			c = getchar();
+		}
 		else if((c == '/') && (insidequotes == 0) && (insidedoublequotes == 0)){
 			if((c=getchar()) == '/'){
 				insidecomment = 1;
 				while((c = getchar()) != '\n')
 					;
 				insidecomment = 0;
-				putchar('\n');}
+				putchar('\n');
+				c=getchar();
+			}
 			else if(c == '*'){
 				insidecomment = 1;
 				while(insidecomment == 1){
@@ -42,19 +48,19 @@ int main(void){
 					if (c=='*')
 						if ((c=getchar())=='/')
 							insidecomment = 0;
-										} }
-						
-						
+				}
+			c=getchar();
+			}
 			else {
 				putchar('/');
-				putchar(c); }
+				 }
 		}
-		else
+		else{
 			putchar(c);
+			c=getchar();
+		}
 	}
-//printf("\nComment' = %d", insidecomment);
-//printf("\nDoubleQuotes = %d", insidedoublequotes);
-//printf("\nQuotes = %d", insidequotes);
+
 }
 
 

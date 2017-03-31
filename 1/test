@@ -29,8 +29,7 @@
 
 #include <stdio.h>
 
-int
-main(void)
+int main(void)
 {
     /* State machine's current state. */
     enum {
@@ -44,19 +43,19 @@ main(void)
 
     /* If state == QUOTE, then ' or ".  Otherwise, undefined. */
     int quote;
-
-    state = PROGRAM;
-    for (;;) {
-        int c = getchar();
-        if (c == EOF) {
-            if (state == SLASH)
-                putchar('/' //**/
-                        1 / 1 /'\1');
-            break;
-        }
-
-        if(0)
-          printf("%d\n", 6/'\2'); 
+//**/
+    state = PROGRAM;//**/
+    for (;;) {//**/
+        int c = getchar();//**/
+        if (c == EOF) {//**/
+            if (state == SLASH)//**/
+                putchar(' /   ' //**/
+                        1 / 1 /'\1');/
+            break; /
+        } /
+/
+        if(0)/
+        /  printf("%d\n", 6/'\2'); 
         /* line of code, and comment, added by RJH 10 July 2000 */
 
         switch (state) {
