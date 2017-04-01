@@ -44,23 +44,23 @@ int main(void){
 	printf("Signed short max =\t%d\n", --s);
 
 	unsigned int ui = 0;
-	printf("\nUnsigned int max =\t%d\n", (--ui));
+	printf("\nUnsigned int max =\t%u\n", (--ui));
 	
-	int i = 0;
-	while(--i < 0);
-	printf("Signed int min =\t%d\n", ++i);
-	i=0;
-	while(++i>0);
-	printf("Signed int max =\t%d\n", --i);
+	ui = 1;
+	while(ui << 1 >= ui)
+		ui = ui << 1;
+	printf("Signed int min =\t%d\n", (int)ui);
+	--ui;
+	printf("Signed int max =\t%d\n", (int)ui);
 
 	unsigned long ul = 0;
 	printf("\nUnsigned int max =\t%lu\n", (--ul));
 	
-	long l = 0;
-	while(--l < 0);
-	printf("Signed long min =\t%ld\n", ++l);
-	l=0;
-	while(++l>0);
-	printf("Signed int max =\t%ld\n", --l);
+	ul = 1;
+	while((ul << 1) >= ul){
+		ul = ul << 1;}
+	printf("Signed long min =\t%ld\n", (long)ul);
+	--ul;
+	printf("Signed long max =\t%lu\n", (long)ul);
 	
 }
