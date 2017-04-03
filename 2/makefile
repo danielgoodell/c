@@ -1,8 +1,8 @@
 P=$(target)
 OBJECTS=
 SRCS = $(wildcard *.c)
-CFLAGS= -g -Wall -std=c11 -O1 -pedantic
-LDLIBS=
+CFLAGS= -g -lm -Wall -std=c11 -O1 -pedantic
+LDLIBS= -lm
 #CC=c11
 
 $(P): $(OBJECTS)
@@ -10,7 +10,7 @@ $(P): $(OBJECTS)
 all: $(SRCS:.c=)
 
 .c:
-	-gcc $(CFLAGS) $< -o $@
+	-gcc $< -o $@ $(CFLAGS)
 
 clean:
 	find . -type f -executable -delete
