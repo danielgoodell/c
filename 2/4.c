@@ -6,7 +6,6 @@ int main(void){
 
 	
 	char s[] = "This is the string characters are going to be removed from";
-
 	const char t[] = "set";
 
 	
