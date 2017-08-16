@@ -11,7 +11,7 @@ int main()
 {
 	char line[MAXLINE];
 	int found = 0;
-	int position=0;
+	int position = 0;
 	
 	while (getline(line, MAXLINE)>0)
 		if ((position=strindex(line, pattern)) >= 0) {
