@@ -1,5 +1,5 @@
-/* 	Add access to library functions like sin, exp, and pow. See math.h	
-*/ 
+/* 	Suppose that there will never be more than one character of pushback. Modify getch and ungetch accordingly.
+*/  
 
 #include <stdio.h>
 #include <stdlib.h>	//for atof()
@@ -12,6 +12,7 @@
 #define MAXVAL 	100 	// maximum depth of the stack
 #define BUFSIZE	100
 #define MATH	'1'
+#define VAR	'2'
 
 int getch(void);
 void ungetch(int);
@@ -21,11 +22,19 @@ double pop(void);
 void print_top(void);		//added function to print the current stack value without popping it
 void clear_stack(void);		//added function to clear the stack
 void handle_math(char []);
+void update_var(void);
+void use_vars(void);
+void ungets(char s[]);
 
 int sp = 0; //next free stack position
 double val[MAXVAL];
 char buf[BUFSIZE];	//buffer for ungetch
 int bufp = 0;		//next free position in buf
+double var[28]	;	//array to hold variable values
+int var_last[2] = {27,27};	// holds the last two variables entered.
+int spv = 27;			//variable pointer.
+double last_val = 0.0;
+
 
 /*reverse Polish calculator */
 int main()
@@ -39,8 +48,19 @@ int main()
 		case NUMBER:
 			push(atof(s));
 			break;
-		case MATH:
+		case MATH:			// added to handle math library functions
+			use_vars();
 			handle_math(s);
+			break;
+		case VAR:			//set the var pointer to the correct variable
+			spv = s[0] - 'A';
+			update_var();
+			break;
+		case '!':
+			push(last_val);
+			break;			
+		case '=':
+			var[spv] = pop();
 			break;
 		case '^':			//added ^ command to clear the stack
 			clear_stack();
@@ -56,16 +76,20 @@ int main()
 			push(op3);	
 			break;		
 		case '+':
+			use_vars();
 			push(pop() + pop());
 			break;
 		case '*':
+			use_vars();
 			push(pop() * pop());
 			break;
 		case '-':
+			use_vars();
 			op2 = pop();
 			push(pop() - op2);
 			break;
 		case '/':
+			use_vars();
 			op2 = pop();
 			if (op2 != 0.0)
 				push(pop() / op2);
@@ -73,6 +97,7 @@ int main()
 				printf("error: zero divisor");
 			break;
 		case '%':				// added modulus operator
+			use_vars();				
 			op2 = pop();
 			if (op2 != 0.0)
 				push((int)pop() % (int)op2); 
@@ -80,7 +105,17 @@ int main()
 				printf("error: zero divisor");
 			break;				
 		case '\n':
-			printf("\t%.8g\n", pop());
+			if (spv != 27){
+				printf("\t%c=%.8g\n", (spv+'A'), var[spv]);
+				last_val = var[spv];
+				spv = 27;
+				var_last[0] = 27;
+				var_last[1] = 27;
+			}
+			else{
+				last_val = pop();
+				printf("\t%.8g\n", last_val);
+			}
 			break;
 		default:
 			printf("error: unknown command %s\n", s);
@@ -120,14 +155,19 @@ int getop(char s[])
 	s[1] = '\0';
 	i = 0;
 	if (isalpha(c)){
-		while(isalpha(s[++i] = c = getch()));
+		while(isalpha(s[++i] = c = getch()))
 			;
 		s[i] = '\0';
 		ungetch(c);
-		return MATH;
+		if (strlen(s) == 1){
+			s[0] = toupper(s[0]);
+			return VAR;
+		}
+		else		
+			return MATH;
 	}
 	if (!isdigit(c) && c != '.' && c != '-')		//added exception for the negative sign
-		return c; //not a number
+		return c; //not a number or letter
 
 	if (isdigit(c) || c == '-')	//collect integer part	//added - negative sign this is copied over to the final string like a digit
 		while(isdigit(s[++i] = c = getch()))
@@ -143,15 +183,18 @@ int getop(char s[])
 
 int getch(void)
 {
-	return (bufp > 0) ? buf[--bufp] : getchar();
+	if (buf[0] != 0){
+		int c = buf[0];
+		buf[0] = 0;
+		return c;
+	}
+	else
+		return getchar();
 }
 
 void ungetch(int c) // push character back to input
 {
-	if (bufp >= BUFSIZE)
-		printf("ungetch: too many characters\n");
-	else
-		buf[bufp++] = c;
+	buf[0] = c;
 }
 void print_top()
 {
@@ -178,4 +221,23 @@ void handle_math(char s[])
 	else
 		printf("Unknown operator : \"%s\"\n", s);
 }
+void update_var(){
+	var_last[0] = var_last[1];
+	var_last[1] = spv;
 	
+}
+void use_vars(void){
+	if(var_last[0]!=27)
+		push(var[var_last[0]]);
+	if(var_last[1] != 27)
+		push(var[var_last[1]]);
+	var_last[0] = 27;
+	var_last[1] = 27;
+	spv = 27;
+}
+
+void ungets(char s[]){
+	for(int i = 0; s[i]!=EOF; i++)
+		ungetch(s[i]);
+}
+
