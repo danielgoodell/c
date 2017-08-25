@@ -27,10 +27,10 @@ void update_var(void);
 void use_vars(void);
 void ungets(char s[]);
 
-int sp = 0; //next free stack position
+int sp; //next free stack position
 double val[MAXVAL];
 char buf[BUFSIZE];	//buffer for ungetch
-int bufp = 0;		//next free position in buf
+int bufp;		//next free position in buf
 double var[28]	;	//array to hold variable values
 int var_last[2] = {27,27};	// holds the last two variables entered.
 int spv = 27;			//variable pointer.
@@ -170,7 +170,18 @@ int getop(char s[])
 	if (!isdigit(c) && c != '.' && c != '-')		//added exception for the negative sign
 		return c; //not a number or letter
 
-	if (isdigit(c) || c == '-')	//collect integer part	//added - negative sign this is copied over to the final string like a digit
+	if (c == '-'){
+		if (!isdigit(c = getch())){
+			ungetch(c);
+			return '-';
+		}
+		else {
+			s[++i] = '-';
+			while(isdigit(s[++i] = c = getch()))
+			;
+		}
+	}
+	else if (isdigit(c))	//collect integer part	//added - negative sign this is copied over to the final string like a digit
 		while(isdigit(s[++i] = c = getch()))
 			;
 	if (c == '.')	//collect fraction part

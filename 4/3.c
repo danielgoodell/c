@@ -90,6 +90,7 @@ double pop(void)
 }
 
 //getop: get next operator or numeric operand
+
 int getop(char s[])
 {
 	int i, c;
@@ -97,10 +98,22 @@ int getop(char s[])
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 	s[1] = '\0';
-	if (!isdigit(c) && c != '.' && c != '-')		//added exception for the negative sign
-		return c; //not a number
 	i = 0;
-	if (isdigit(c) || c == '-')	//collect integer part	//added - negative sign this is copied over to the final string like a digit
+	if (!isdigit(c) && c != '.' && c != '-')		//added exception for the negative sign
+		return c; //not a number or letter
+
+	if (c == '-'){
+		if (!isdigit(c = getch())){
+			ungetch(c);
+			return '-';
+		}
+		else {
+			s[++i] = '-';
+			while(isdigit(s[++i] = c = getch()))
+			;
+		}
+	}
+	else if (isdigit(c))	//collect integer part	//added - negative sign this is copied over to the final string like a digit
 		while(isdigit(s[++i] = c = getch()))
 			;
 	if (c == '.')	//collect fraction part
