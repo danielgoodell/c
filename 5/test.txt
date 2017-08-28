@@ -1,0 +1,163 @@
+
+Starting Nmap 7.12 ( https://nmap.org ) at 2017-03-22 15:49 EDT
+Nmap scan report for batdan.uk.to (173.91.18.195)
+Host is up (0.039s latency).
+rDNS record for 173.91.18.195: cpe-173-91-18-195.neo.res.rr.com
+Not shown: 993 filtered ports
+PORT     STATE  SERVICE
+21/tcp   open   ftp
+22/tcp   open   ssh
+80/tcp   open   http
+113/tcp  closed ident
+443/tcp  open   https
+8008/tcp open   http
+8010/tcp open   xmpp
+
+Nmap done: 1 IP address (1 host up) scanned in 14.90 seconds
+
+---------------------------------------------------------------------------
+
+Starting Nmap 7.12 ( https://nmap.org ) at 2017-03-22 15:47 EDT
+Nmap scan report for portquiz.net (178.33.250.62)
+Host is up (0.047s latency).
+rDNS record for 178.33.250.62: electron.positon.org
+Not shown: 983 filtered ports
+PORT     STATE  SERVICE
+21/tcp   open   ftp
+22/tcp   open   ssh
+80/tcp   open   http
+110/tcp  open   pop3
+113/tcp  closed ident
+143/tcp  open   imap
+389/tcp  open   ldap
+443/tcp  open   https
+636/tcp  open   ldapssl
+993/tcp  open   imaps
+995/tcp  open   pop3s
+1494/tcp open   citrix-ica
+1935/tcp open   rtmp
+3389/tcp open   ms-wbt-server
+3390/tcp open   dsc
+8008/tcp open   http
+8010/tcp open   xmpp
+
+Nmap done: 1 IP address (1 host up) scanned in 29.59 seconds
+
+-----------------------------------------------------------------------------
+
+Starting Nmap 7.12 ( https://nmap.org ) at 2017-03-22 17:05 EDT
+NSE: Loaded 138 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 17:05
+Completed NSE at 17:05, 0.00s elapsed
+Initiating NSE at 17:05
+Completed NSE at 17:05, 0.00s elapsed
+Initiating Ping Scan at 17:05
+Scanning portquiz.net (178.33.250.62) [4 ports]
+Completed Ping Scan at 17:05, 0.20s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 17:05
+Completed Parallel DNS resolution of 1 host. at 17:05, 0.00s elapsed
+Initiating SYN Stealth Scan at 17:05
+
+Scanning portquiz.net (178.33.250.62) [65535 ports]
+
+Discovered open port 3389/tcp on 178.33.250.62
+Discovered open port 22/tcp on 178.33.250.62
+Discovered open port 993/tcp on 178.33.250.62
+Discovered open port 110/tcp on 178.33.250.62
+Discovered open port 21/tcp on 178.33.250.62
+Discovered open port 443/tcp on 178.33.250.62
+Discovered open port 80/tcp on 178.33.250.62
+Discovered open port 143/tcp on 178.33.250.62
+Discovered open port 995/tcp on 178.33.250.62
+Discovered open port 1935/tcp on 178.33.250.62
+Discovered open port 3391/tcp on 178.33.250.62
+Discovered open port 5223/tcp on 178.33.250.62
+Discovered open port 2598/tcp on 178.33.250.62
+Discovered open port 3392/tcp on 178.33.250.62
+Discovered open port 1494/tcp on 178.33.250.62
+Discovered open port 636/tcp on 178.33.250.62
+Discovered open port 3390/tcp on 178.33.250.62
+Discovered open port 389/tcp on 178.33.250.62
+
+
+
+I
+PORT     STATE  SERVICE            VERSION
+21/tcp   open   ftp                ProFTPD 1.3.4a
+22/tcp   open   ssh                OpenSSH 6.0p1 Debian 4+deb7u6 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 1c:e5:35:f4:cb:8d:15:63:40:f3:c9:46:c6:b6:19:ad (DSA)
+|   2048 6d:1f:5d:f0:a3:c4:4b:b2:39:b0:56:f3:f0:da:d6:3e (RSA)
+|_  256 34:30:c8:75:9f:e1:9f:cf:f3:a0:3a:39:3d:f0:50:5e (ECDSA)
+80/tcp   open   ssl/http           Apache
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+110/tcp  open   ssl/pop3?
+113/tcp  closed ident
+143/tcp  open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+|_imap-ntlm-info: ERROR: Script execution failed (use -d to debug)
+389/tcp  open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+443/tcp  open   ssl/ssl            Apache httpd (SSL-only mode)
+|_http-server-header: Apache
+|_http-title: 401 Authorization Required
+| ssl-cert: Subject: commonName=electron.positon.org
+| Issuer: commonName=electron.positon.org
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha1WithRSAEncryption
+| Not valid before: 2015-04-26T12:20:32
+| Not valid after:  2025-04-23T12:20:32
+| MD5:   37f3 d7df bb38 5634 58ba e79e e8dc 7e2e
+|_SHA-1: e403 3091 3fc9 2074 4e28 c7db 595f ba85 8d4c 6b06
+|_ssl-date: TLS randomness does not represent time
+636/tcp  open   ssl/ldapssl?
+993/tcp  open   ssl/imaps?
+995/tcp  open   ssl/pop3s?
+1494/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+1935/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+2598/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+3389/tcp open   ssl/ms-wbt-server?
+3390/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+3391/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+3392/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+5223/tcp open   http               Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache
+|_http-title: Outgoing Port Tester
+

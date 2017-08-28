@@ -1,23 +1,10 @@
 /*	Rewrite readlines to store lines in an array supplied by main rather 
 	than calling alloc to maintain storage. How much faster is the program?
 	
-	Note: I used a large array declared in main and passed onto readlines.
-	readlines just increments the pointed in the array each time a line is read.
-	
-	Speed comparison:
-	daniel@daniel-VirtualBox:~/c/5$ time ./7-bookver < mobydick.txt 
-		real	0m0.506s
-		user	0m0.008s
-		sys	0m0.004s
-		
-	daniel@daniel-VirtualBox:~/c/5$ time  ./7 < mobydick.txt		
-		real	0m0.508s
-		user	0m0.008s
-		sys	0m0.004s
-		
-	The speed difference is very minor. Partly I think skipping alloc doesn't
-	really save that much time and partly maybe the program is limited more by I/O
-	than by time required to allocate memory and return the pointer.
+	NOTE: This is the version of the sort program from the book to use 
+	as a speed comparison to the version that does not use alloc.
+	The only change was to increase ALLOCSIZE to allow us to sort 5000
+	lines of Moby Dick to make for a better time comparison.
 */
 
 #include <stdio.h>
@@ -28,10 +15,13 @@
 #define ALLOCSIZE 10000000 // size of available space
 
 char * lineptr[MAXLINES];
+static char allocbuf[ALLOCSIZE];	// storage for alloc
+static char *allocp = allocbuf;		//next free position
 
-int readlines(char * lineptr[], int nlines, char *allocbuf);
+int readlines(char * lineptr[], int nlines);
 void writelines(char *lineptr[], int nlines);
 int getline(char *, int);
+char *alloc(int);
 void qsort(char *lineptr[], int left, int right);
 void swap(char *v[], int i, int j);
 int strncomp(char *s, char *t);
@@ -41,10 +31,8 @@ int strncomp(char *s, char *t);
 int main(void)
 {
 	int nlines;	//number of input lines read
-	static char allocbuf[ALLOCSIZE]; 	//array to be passed by main.
 	
-	
-	if ((nlines = readlines(lineptr, MAXLINES, allocbuf)) >= 0) {
+	if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
 		qsort(lineptr, 0, nlines-1);
 		writelines(lineptr, nlines);
 		return 0;
@@ -55,23 +43,20 @@ int main(void)
 }
 
 //readlines : read input lines
-int readlines(char *lineptr[], int maxlines, char * allocbuf)
+int readlines(char *lineptr[], int maxlines)
 {
 	int len, nlines;
 	char *p, line[MAXLINES];
 	
 	nlines = 0;
-	p = allocbuf;
-	while ((len = getline(line, MAXLEN)) > 0){
-		if (nlines >= maxlines)
+	while ((len = getline(line, MAXLEN)) > 0)
+		if (nlines >= maxlines || (p = alloc(len)) == NULL)
 			return -1;
 		else {
 			line[len-1] = '\0';	//delete newline
 			strcpy(p, line);
 			lineptr[nlines++] = p;
-			p += len;
 		}
-	}
 	return nlines;
 }
 
@@ -135,6 +120,15 @@ int getline(char s[], int lim)
 		s[i]='\0';
 	}
 	return i;
+}
+
+char *alloc(int n)	// return pointer to n characters.
+{
+	if (allocbuf + ALLOCSIZE - allocp >= n) {// it fits
+		allocp += n;
+		return allocp - n; //old p
+	} else	//not enough room
+	return 0;
 }
 
 int strncomp(char *s, char *t)

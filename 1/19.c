@@ -69,6 +69,14 @@ void copy(char to[], char from[])
 		++i;
 }
 
+int strncmp(char *s, char *t)
+{
+	while(n--, *s++ == *t++){
+		if *s == 0
+			return 0;
+	}
+		return *--s - *--t;
+}
 
 
 
