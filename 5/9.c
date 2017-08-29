@@ -1,7 +1,5 @@
-/* 	There is no error checking in da_of_year or month_day. Remedy this defect.
-
-	Error checking for the two functions. Added features to make sure that if 
-	numbers passed to the function are out of range the functions return -1.
+/* 	Rewrite the routines day_of_year and month_day with pointers instead of indexing.
+	
 */
 
 #include <stdio.h>
@@ -21,16 +19,19 @@ static char month_names[13][11] =
 int day_of_year(int year, int month, int day)
 {
 	int i, leap;
+	char * pdaytab = &daytab[0][0];
 	if (month > 12)
 		return -1;
 	
-	leap = (year%4 == 0 && year%100 !=0) || year%400 == 0;
+	leap = 12*((year%4 == 0 && year%100 !=0) || year%400 == 0);
 	
-	if(day > daytab[leap][month])
+	pdaytab+=leap;
+	
+	if(day > *(pdaytab+month))
 		return -1;
 	
 	for (i = 1; i < month; i++)
-		day += daytab[leap][i];
+		day += *(pdaytab+i);
 		
 	return day;
 }
@@ -39,11 +40,15 @@ int day_of_year(int year, int month, int day)
 int month_day(int year, int yearday, int *pmonth, int *pday)
 {
 	int i, leap;
+	char * pdaytab = &daytab[0][0];
 	
 	leap = (year%4 == 0 && year%100!=0) || year%400 == 0;
 	
-	for (i = 1; yearday > daytab[leap][i]; i++)
-		yearday -= daytab[leap][i];
+	pdaytab+=leap;
+	
+	for (i = 1;  yearday > *(pdaytab+i); i++)
+		yearday -= *(pdaytab+1);
+		
 	if(i > 12 || i < 0)
 		return -1;
 	else{
@@ -60,8 +65,7 @@ int main(void)
 	int month, monthday;
 	
 	if (month_day(year, yearday, &month, &monthday) < 0)
-		printf("Error, value out of range\n");
-	
+		printf("Error, value out of range\n");	
 	else
 		printf("In %d, the %d day of the year is %s %d\n", year, yearday, month_names[month-1], monthday);
 		
@@ -69,8 +73,7 @@ int main(void)
 	monthday = 11;
 	
 	if ((yearday = day_of_year(year, month, monthday)) < 0)
-		printf("Error, value out of range\n");
-	
+		printf("Error, value out of range\n");	
 	else
 		printf("%s %d, %d is the %d day of the year.\n", month_names[month-1], monthday, year, yearday);
 	
