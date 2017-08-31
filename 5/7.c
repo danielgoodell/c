@@ -29,7 +29,7 @@
 
 char * lineptr[MAXLINES];
 
-int readlines(char * lineptr[], int nlines, char *allocbuf);
+int readlines(char *lineptr[], int nlines, char *allocbuf);
 void writelines(char *lineptr[], int nlines);
 int getline(char *, int);
 void qsort(char *lineptr[], int left, int right);
