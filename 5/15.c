@@ -1,15 +1,15 @@
-/* 	Modify the sort program to handle a -r flag, which indicates sorting in reverse (decreasing)
-	order. Be sure that -r works with -n.
+/* 	Add the option -f to fold upper and lower case together, so that case distinctions are not 
+	made during sorting.
 	
-	I modified the code to check the arguments to loop over all the arguments and check each one
-	if it was -n or -n. I made the reverse a global variable so that the comparison functions
-	could return an opposite value easily without having to pass any additional parameters.
-	This seems inelegant but it was easy.
+	This is easy with another global variable that is set in the for same loop that scans
+	through the arguments. If it is one we'll use toupper from ctype.h to convert both
+	characters to upper case. Still ugly but it works fine.
 */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define MAXLINES 5000	//max lines to be sorted.
 #define MAXLEN 1000
@@ -20,6 +20,7 @@ char *lineptr[MAXLINES];
 static char allocbuf[ALLOCSIZE];	// storage for alloc
 static char *allocp = allocbuf;		//next free position
 char reverse = 0;		//1 if reverse sorted.
+char fold = 0;			//treat upper and lower case the same.
 
 int readlines(char *lineptr[], int nlines);
 void writelines(char *lineptr[], int nlines);
@@ -40,10 +41,14 @@ int main(int argc, char *argv[])
 		for (int i = 1; i < argc; i++){
 			if (strcomp(argv[i], "-n") == 0)
 				numeric = 1; 
+			else if (strcomp(argv[i], "-f") == 0)
+				fold = 1;
 			else if (strcomp(argv[i], "-r") == 0)
 				reverse = 1;
+
 		}
 	}	
+	
 	
 	if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
 		qsort((void **)lineptr, 0, nlines-1, (int (*)(void*,void*))(numeric ? numcmp : strcomp));
@@ -135,12 +140,14 @@ char *alloc(int n)	// return pointer to n characters.
 }
 
 int strcomp(char *s, char *t)
-{
-	while(*s++ == *t++){
+{	
+	while((fold ? toupper(*s++) : *s++) == (fold ? toupper(*t++) : *t++)){
 		if (*s == 0)
 			return 0;
 	}
-		return reverse ? *--t - *--s : *--s - *--t;
+		char u = fold ? toupper(*--s) : *--s;
+		char v = fold ? toupper(*--t) : *--t;
+		return reverse ? v - u : u - v;
 }
 
 int getline(char s[], int lim)
