@@ -56,11 +56,11 @@ int main(int argc, char **argv)
 
 	sorted = treesort(root, sorted);
 	
-//	destroytree(root);
+	destroytree(root);
 
 	treeprint(sorted);
 	
-//	destroytree(sorted);
+	destroytree(sorted);
 	
 	return 0;
 }
