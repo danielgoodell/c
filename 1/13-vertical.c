@@ -3,7 +3,7 @@
 #include <stdio.h>
 #define IN 1
 #define OUT 0
-#define MAXWORDLEN 20 // formatting of histogram falls apart with MAXWORDLEN>100
+#define MAXWORDLEN 16 // formatting of histogram falls apart with MAXWORDLEN>100
 
 int main(){
 	int lengths[MAXWORDLEN];
@@ -51,14 +51,14 @@ Words ten letter or longer are stored at lengths[9]
 		putchar(' ');
 		for(i=0;i<MAXWORDLEN;i++){
 			if(lengths[i]>=j)
-				printf("*  ");
+				printf("*\t");
 			else
-				printf("   ");
+				printf("\t");
 		}
 		putchar('\n');
 	}
 	for(i=0;i<(MAXWORDLEN-1);i++)
-		printf("%2d ", i+1);
+		printf("%d\t", i+1);
 	putchar('+');
 	putchar('\n');
 }	

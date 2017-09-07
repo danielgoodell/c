@@ -1,5 +1,8 @@
 /*	5-19: Modify undcl so that it doesn't add redundant parentheses to declarations.
 
+	After looking at a few examples it looks like we only need to add extra parentheses when
+	we have a pointer to an array or to a function. That means we have to add parentheses
+	only when the last token was a pointer. This is pretty easy to add.
 */
 
 #include <stdio.h>
@@ -27,20 +30,30 @@ int bufp;		//next free position in buf
 //undcl: convert word descriptions to declarations
 int main(void)
 {
-	int type;
+	int type, ltype = 0;
 	char temp[MAXTOKEN];
 	
 	while(gettoken() != EOF) {
 		strcpy(out, token);
 		while ((type = gettoken()) != '\n')
-			if (type == PARENS || type == BRACKETS)
-				strcat (out, token);
+			if (type == PARENS || type == BRACKETS){
+				if(ltype == '*'){
+					sprintf(temp, "(%s)", out);
+					strcpy(out, temp);
+					strcat(out, token);
+				}
+				else
+					strcat (out, token);
+				ltype = type;
+			}
 			else if (type == '*') {
-				sprintf(temp, "(*%s)", out);
+				sprintf(temp, "*%s", out);
 				strcpy(out, temp);
+				ltype = type;				
 			} else if (type == NAME) {
 				sprintf(temp, "%s %s", token, out);
 				strcpy(out, temp);
+				ltype = type;
 			} else
 				printf("invalid input at %s\n", token);
 		printf("%s\n", out);
